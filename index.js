@@ -139,12 +139,16 @@ BinarySearchTree.prototype.traverseOne = function (fn) {
     this.inOrder(current, fn);
 };
 
-BinarySearchTree.prototype.traverse = function (fn) {
+BinarySearchTree.prototype.traverse = function (order) {
     var result = [];
 
     this.traverseOne(function (node) {
         result.push(node.value);
     });
+
+    if(!order) {
+        result = result.reverse();
+    }
 
     return result;
 };
