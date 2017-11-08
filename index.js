@@ -123,7 +123,7 @@ BinarySearchTree.prototype.search = function (key) {
 BinarySearchTree.prototype.contains = function (value) {
     var result = false;
 
-    this.traverse(function (node) {
+    this.traverseOne(function (node) {
         if (result) {
             return;
         }
@@ -134,9 +134,19 @@ BinarySearchTree.prototype.contains = function (value) {
 }
 
 
-BinarySearchTree.prototype.traverse = function (fn) {
+BinarySearchTree.prototype.traverseOne = function (fn) {
     var current = this._root;
     this.inOrder(current, fn);
+};
+
+BinarySearchTree.prototype.traverse = function (fn) {
+    var result = [];
+
+    this.traverseOne(function (node) {
+        result.push(node.value);
+    });
+
+    return result;
 };
 
 BinarySearchTree.prototype.inOrder = function (node, fn) {
