@@ -146,7 +146,7 @@ BinarySearchTree.prototype.traverse = function (order) {
         result.push(node.value);
     });
 
-    if(!order) {
+    if (!order) {
         result = result.reverse();
     }
 
@@ -162,6 +162,22 @@ BinarySearchTree.prototype.inOrder = function (node, fn) {
         this.inOrder(node.right, fn);
     }
 };
+BinarySearchTree.prototype.verify = function () {
+
+    function check (root, min, max) {
+        if (root === null) {
+            return true
+        }
+        if ((root.key <= min) || (max <= root.key)) {
+            return false
+        } else {
+            return check(root.left, min, root.key) && check(root.right, root.key, max)
+        }
+
+    }
+
+    return check(this._root, -Infinity, Infinity)
+}
 
 
 function test () {
@@ -184,6 +200,7 @@ function test () {
 
     var del = bst.contains('elem7')
 }
+
 
 test();
 
