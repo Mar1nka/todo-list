@@ -14,8 +14,7 @@ body {
     height: 100%;
     max-width: 100%;
 
-    font-family: Arial, sans-serif;
-    /*font-family: "Arial MT";*/
+    font-family: ArialMT, sans-serif;
     font-size: 11px;
     font-weight: 400;
 }
@@ -61,7 +60,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
     color: white;
     letter-spacing: -0.06px;
@@ -115,7 +114,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
     margin: 20px 0;
 }
@@ -160,7 +159,6 @@ header {
 
 .cart-select {
     border-bottom: 1px solid #d6d6d6;
-    cursor: pointer;
 }
 
 
@@ -171,6 +169,7 @@ header {
     width: 214px;
     height: 33px;
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .cart-items::after {
@@ -234,8 +233,10 @@ header {
 }
 
 .slider-controls-button {
+    position: absolute;
+    top: ~"calc(50% - 59px)";
     width: 30px;
-    height: 117px;
+    height: 118px;
     background: white;
     cursor: pointer;
 }
@@ -245,14 +246,10 @@ header {
 }
 
 .slider-controls-prev-button {
-    position: absolute;
-    top: 160px;
     left: 0;
 }
 
 .slider-controls-next-button {
-    position: absolute;
-    top: 160px;
     right: 0;
 }
 
@@ -299,7 +296,7 @@ main {
     justify-content: space-between;
     align-items: center;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
 }
 
@@ -384,9 +381,9 @@ main {
     justify-content: space-between;
     align-items: center;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
-    padding: 46px 0px;
+    padding: 46px 0;
 }
 
 .offers-others {
@@ -445,7 +442,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-width: var(--desktop-width);
+    max-width: var(--main-width);
     width: 100%;
 }
 
@@ -468,12 +465,15 @@ main {
 
 .product-menu-button {
     width: 135px;
-    padding: 15px 0;
+    padding: 15px 5px;
     background: white;
     color: #555555;
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: -0.15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
 
     i {
@@ -612,20 +612,30 @@ main {
 }
 
 .product-item-info-name {
+    width: 100%;
+    padding: 0 20px;
+    margin: 2px 0;
     color: #373737;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: -0.12px;
-    margin: 2px 0;
     white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-item-info-price {
+    width: 100%;
+    padding: 0 20px;
     color: #373737;
     font-size: 22px;
     text-transform: uppercase;
     letter-spacing: -0.22px;
     margin: 2px 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .add-to-cart-button {
@@ -657,7 +667,7 @@ main {
     justify-content: flex-start;
     align-items: center;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
 }
 
@@ -711,7 +721,7 @@ footer {
     display: flex;
     align-items: center;
 
-    width: var(--desktop-content-width);
+    width: var(--main-content-width);
     padding: 12px;
     position: relative;
 }
@@ -767,7 +777,7 @@ footer {
 }
 
 .about-content {
-    width: var(--desktop-content-width);
+    width: var(--main-content-width);
     text-align: center;
     color: #999999;
     font-size: 14px;
@@ -813,7 +823,7 @@ footer {
 }
 
 .credit-cards-item-1 {
-    background-position-x: 0px;
+    background-position-x: 0;
 }
 
 .credit-cards-item-2 {
@@ -860,9 +870,9 @@ footer {
     justify-content: flex-start;
     align-items: flex-start;
 
-    max-width: var(--desktop-content-width);
+    max-width: var(--main-content-width);
     width: 100%;
-    padding: 35px 0px;
+    padding: 35px 0;
 }
 
 .navigation-categories {
@@ -927,8 +937,8 @@ footer {
         justify-content: center;
         align-items: center;
 
-        width: 35px;
-        height: 34px;
+        width: 37px;
+        height: 37px;
         text-decoration: none;
         background: black;
         border-radius: 50%;
@@ -955,7 +965,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: var(--desktop-content-width);
+    width: var(--main-content-width);
     padding: 20px 0;
     margin: 0 auto;
 
@@ -975,7 +985,7 @@ footer {
 
             &:after {
                 content: '|';
-                display: inline-block;
+                display: inline-flex;
                 padding-left: 8px;
             }
 
