@@ -1,0 +1,235 @@
+@media (max-width: 760px) {
+
+    :root {
+        --desktop-content-width: 640px;
+        --desktop-content-width: 610px;
+    }
+
+    .slider-wrapper, .offers-wrapper, .brands-wrapper, .about-wrapper, .credit-cards-wrapper, .footer-navigation-wrapper {
+        display: none;
+    }
+
+    body {
+        font-size: 30px;
+        min-width: 320px;
+    }
+
+    .account-wrapper {
+        height: auto;
+    }
+
+    .account {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .account__custom-care {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        padding: 30px;
+        background: #fafafa;
+        color: #838383;
+        font-size: 30px;
+        text-transform: uppercase;
+        letter-spacing: -0.15px;
+    }
+
+    .account__custom-care span {
+        color: #838383;
+        font-size: 30px;
+        text-transform: uppercase;
+        letter-spacing: -0.15px;
+    }
+
+    .account__menu {
+        width: 100%;
+        padding: 30px;
+        font-size: 30px;
+        letter-spacing: -0.15px;
+    }
+
+    .header-main {
+        flex-direction: column;
+        width: 100%;
+
+        .logo {
+            width: 360px;
+            height: 105px;
+            margin: 30px 0;
+        }
+
+        .header-menu {
+            width: 100%;
+
+            .cart {
+                width: 100%;
+                font-size: 30px;
+                padding: 30px;
+
+                .cart-select {
+                    display: none;
+                }
+
+                .cart-total {
+                    width: 100%;
+
+                    i {
+                        font-size: 2em;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .nav-mobile {
+        font-size: 30px;
+        padding: 30px;
+    }
+
+    .subscribe-wrapper {
+        background: white;
+
+        .subscribe {
+            flex-direction: column;
+            width: 100%;
+
+            .subscribe-email {
+                width: 100%;
+                margin: 30px 0;
+
+                .subscribe-label {
+                    display: none;
+                }
+
+                .subscribe-input {
+                    width: 100%;
+                    font-size: 30px;
+                    background-color: #ededed;
+                    padding: 44px;
+                }
+
+                .subscribe-button {
+                    width: 96px;
+                    height: 88px;
+
+                    i {
+                        font-size: 3em;
+                    }
+                }
+            }
+
+            .subscribe-social-networks {
+                margin-bottom: 30px;
+
+                .social-networks-links-item {
+                    width: 88px;
+                    height: 88px;
+                }
+                span {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .product {
+        .product-content {
+            justify-content: space-around;
+        }
+
+        .product-menu-buttons {
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .product-menu-button {
+            display: none;
+
+            i {
+                display: block;
+            }
+        }
+
+        .product-menu-button--active {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            background: #f4845d;
+            width: 100%;
+            text-align: left;
+            font-size: 30px;
+            padding: 30px;
+        }
+
+        .product-controls {
+            display: none;
+        }
+
+        .product-item-info-name {
+            font-size: 18px;
+        }
+
+        .product-item-info-price {
+            font-size: 27px;
+        }
+
+    }
+
+    .add-to-cart-button {
+        font-size: 20px;
+        line-height: 24px;
+        padding: 10px;
+    }
+
+    .product-load-button-wrapper {
+        display: flex;
+        width: 100%;
+        padding: 30px;
+        justify-content: center;
+        align-items: center;
+        background: #fd926d;
+    }
+
+    .product-load-button {
+        padding: 20px 50px;
+        font-size: 30px;
+        color: white;
+        background: black;
+        text-transform: uppercase;
+    }
+
+    .clearance {
+        .clearance-product {
+            justify-content: space-around;
+        }
+
+        .product-load-button-wrapper {
+            background: white;
+        }
+    }
+
+    .footer-copyright {
+        padding: 20px;
+
+        .responsive-menu {
+            display: block;
+            color: white;
+        }
+
+        .footer-copyright-nav {
+            a {
+                display: none;
+
+            }
+        }
+
+        .copy {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+}

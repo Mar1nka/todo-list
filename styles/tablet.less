@@ -1,0 +1,62 @@
+@media (max-width: 1000px) {
+
+    :root {
+        --desktop-content-width: 760px;
+        --desktop-content-width: 730px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    .offers-img-1 {
+        width: 364px;
+        height: 256px;
+    }
+
+    .offers-img-2 {
+        width: 364px;
+        height: 126px;
+    }
+
+    .offers-img-3, .offers-img-4 {
+        width: 181px;
+        height: 126px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--desktop-content-width);
+        width: 100%;
+        padding: 14px 15px;
+        color: #ffffff;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: -0.09px;
+        background: #fd926d;
+    }
+
+    .navigation-categories {
+        flex-wrap: wrap;
+        max-width: 400px;
+    }
+
+    .navigation-category {
+        width: 200px;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .nav-mobile {
+        display: none;
+    }
+}
