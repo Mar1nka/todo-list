@@ -34,4 +34,4 @@ const addSubCategory = function (category) {
 };
 
 
-export {addCategory, deleteCategory, addSubCategory, renameCategory};
+export {addCategory, expandCategory, renameCategory, deleteCategory, addSubCategory};

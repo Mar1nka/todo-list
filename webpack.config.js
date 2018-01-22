@@ -1,7 +1,8 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/components/categories/category.jsx', // входная точка - исходный файл
+    // entry: './src/components/categories/category.jsx', // входная точка - исходный файл
+    entry: './src/components/tasks/task.jsx', // входная точка - исходный файл
     output:{
         path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
         publicPath: '/public/',
@@ -19,5 +20,9 @@ module.exports = {
             }
         ]
     },
+    // devServer: {
+    //     inline:true,
+    //     port:9000
+    // },
     devtool: 'source-map'
 };

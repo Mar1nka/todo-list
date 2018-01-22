@@ -17,11 +17,11 @@ export const reducer = function (state = Map(), action) {
             return state;
 
         case 'DELETE_CATEGORY':
-            // return state.update("phones",
-            //     (phones) => phones.filterNot(
-            //         (item) => item === action.phone
-            //     )
-            // );
+            return state.update("categories",
+                (categories) => categories.filter(
+                    (item) =>  item.title !== action.category.title
+                )
+            );
             return state;
 
         case 'ADD_SUB_CATEGORY':
@@ -32,3 +32,4 @@ export const reducer = function (state = Map(), action) {
 
     return state;
 };
+

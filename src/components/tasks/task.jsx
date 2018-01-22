@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import {reducer} from '../../reducers/category-reducer.jsx';
-import {CategoryView} from './category-view.jsx';
+import {reducer} from '../../reducers/task-reducer.jsx';
+import {TaskView} from './task-view.jsx';
 
 const store = createStore(reducer);
 
 store.dispatch({
-    type: "SET_CATEGORIES_STATE",
+    type: "SET_TASK_STATE",
     state: {
-        categories: [
+        tasks: [
             {
-                title: 'Hobby',
-                subCategories: []
+                title: 'My hobby',
+                descriptions: 'sport, sport',
+                isCompleted: 'true'
             }
         ]
     }
@@ -22,7 +23,7 @@ store.dispatch({
 
 ReactDOM.render(
     <Provider store={store}>
-        <CategoryView/>
+        <TaskView/>
     </Provider>,
-    document.getElementById("categories")
+    document.getElementById("tasks")
 );
