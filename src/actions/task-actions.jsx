@@ -1,7 +1,7 @@
-const addTask = function (title) {
+const addTask = function (task) {
     return {
         type: "ADD_TASK",
-        title
+        task
     }
 };
 

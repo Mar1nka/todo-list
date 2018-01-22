@@ -10,7 +10,7 @@ export default class TasksList extends React.Component {
             {this.props.tasks.map((task, index) =>
                 {return <TaskItem key={index}
                                       item={task}
-                                      setCopmletedTask={this.props.setCompletedTask}
+                                      setCompletedTask={this.props.setCompletedTask}
                                       renameTask={this.props.renameTask}
                                       // deleteTask={this.props.deleteTask}
                 />}

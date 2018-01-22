@@ -4,20 +4,21 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {reducer} from '../../reducers/task-reducer.jsx';
 import {TaskView} from './task-view.jsx';
+import {Map} from 'immutable';
 
 const store = createStore(reducer);
 
 store.dispatch({
     type: "SET_TASK_STATE",
-    state: {
+    state: new Map({
         tasks: [
             {
                 title: 'My hobby',
-                descriptions: 'sport, sport',
-                isCompleted: 'true'
+                description: 'sport, sport',
+                isCompleted: true
             }
         ]
-    }
+    })
 });
 
 

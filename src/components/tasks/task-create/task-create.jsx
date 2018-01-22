@@ -12,7 +12,8 @@ export default class TaskCreate extends React.Component {
 
         if (taskTitle !== "") {
             this.refs.taskInput.value ="";
-            return this.props.addTask(taskTitle);
+            const task = {title: taskTitle};
+            return this.props.addTask(task);
         }
     }
 
