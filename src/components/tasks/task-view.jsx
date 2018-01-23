@@ -15,6 +15,8 @@ class TaskView extends React.Component {
 }
 
 function mapStateToProps(state) {
+    //let tasks = state.get("tasks");
+    //console.log('tasks', tasks);
     return {
         tasks: state.get("tasks")
     };

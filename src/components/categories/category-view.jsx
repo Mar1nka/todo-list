@@ -16,7 +16,9 @@ class CategoryView extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        categories: state.get("categories")
+        categories: state.get("categories"),
+        expandCategory: state.get("expandCategory")
+
     };
 }
 

@@ -12,7 +12,8 @@ export default class CategoryCreate extends React.Component {
 
         if (categoryTitle !== "") {
             this.refs.categoryInput.value ="";
-            return this.props.addCategory(categoryTitle);
+            const category = {title: categoryTitle};
+            return this.props.addCategory(category);
         }
     }
 

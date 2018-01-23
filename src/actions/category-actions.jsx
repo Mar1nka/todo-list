@@ -1,7 +1,7 @@
-const addCategory = function (title) {
+const addCategory = function (category) {
     return {
         type: "ADD_CATEGORY",
-        title
+        category
     }
 };
 
