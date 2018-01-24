@@ -1,10 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/category-actions.jsx';
 import CategoryCreate from './category-create/category-create.jsx';
 import CategoriesList from './categories-list/categories-list.jsx';
 
-class CategoryView extends React.Component {
+export class CategoryView extends React.Component {
 
     render() {
         return <div>
@@ -14,14 +13,15 @@ class CategoryView extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        categories: state.get("categories"),
-        expandCategory: state.get("expandCategory")
-
-    };
-}
-
-const connectedCategoryView = connect(mapStateToProps, actions)(CategoryView);
-
-export {connectedCategoryView as CategoryView}
+// function mapStateToProps(state) {
+//     console.log('state', state);
+//     return {
+//         categories: state.categoryReducer.get("categories"),
+//         activeCategory: state.get("activeCategory")
+//
+//     };
+// }
+//
+// const connectedCategoryView = connect(mapStateToProps, actions)(CategoryView);
+//
+// export {connectedCategoryView as CategoryView}

@@ -10,7 +10,7 @@ export default class CategoriesList extends React.Component {
             {this.props.categories.map( (category, index) =>
                 {return <CategoryItem key={index}
                               item={category}
-                              expandCategory={this.props.expandCategory}
+                                      activeCategory={this.props.activeCategory}
                               renameCategory={this.props.renameCategory}
                               deleteCategory={this.props.deleteCategory}
                               addSubCategory={this.props.addSubCategory}

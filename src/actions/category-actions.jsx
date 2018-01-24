@@ -5,9 +5,9 @@ const addCategory = function (category) {
     }
 };
 
-const expandCategory = function (category) {
+const activeCategory = function (category) {
     return {
-        type: "EXPAND_CATEGORY",
+        type: "SET_ACTIVE_CATEGORY",
         category
     }
 };
@@ -34,4 +34,4 @@ const addSubCategory = function (category) {
 };
 
 
-export {addCategory, expandCategory, renameCategory, deleteCategory, addSubCategory};
+export {addCategory, activeCategory, renameCategory, deleteCategory, addSubCategory};

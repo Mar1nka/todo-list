@@ -1,11 +1,12 @@
 import {Map} from 'immutable';
+import {initialState} from '../data/initial-data.jsx';
 
-export const reducer = function (state = Map(), action) {
+export const categoryReducer = function (state = Map(initialState), action) {
     switch (action.type) {
         case 'SET_CATEGORIES_STATE':
             return state.merge(action.state);
 
-            case 'ADD_CATEGORY':
+        case 'ADD_CATEGORY':
             const newCategory = {
                 title: action.category.title,
                 subCategories: [],
@@ -16,28 +17,24 @@ export const reducer = function (state = Map(), action) {
                 return [...categories, newCategory];
             });
 
-            case 'EXPAND_CATEGORY':
-                const newExpandCategory = action.category;
-                return state.update('expandCategory', () => {
-                    return newExpandCategory;
-                });
-            break;
-
+        case 'SET_ACTIVE_CATEGORY':
+            const newActiveCategory = action.category;
+            return state.update('activeCategory', () => {
+                return newActiveCategory;
+            });
         case 'RENAME_CATEGORY':
             return state;
 
         case 'DELETE_CATEGORY':
             return state.update("categories",
                 (categories) => categories.filter(
-                    (item) =>  item.title !== action.category.title
+                    (item) => item.title !== action.category.title
                 )
             );
             return state;
 
         case 'ADD_SUB_CATEGORY':
             return state;
-
-
     }
 
     return state;

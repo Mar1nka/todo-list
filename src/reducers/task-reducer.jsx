@@ -1,6 +1,7 @@
 import {Map} from 'immutable';
+import {initialState} from '../data/initial-data.jsx';
 
-export const reducer = function (state = Map(), action) {
+ export const taskReducer = function (state = Map(initialState.activeCategory), action) {
     switch (action.type) {
         case 'SET_TASK_STATE':
             return state.merge(action.state);
@@ -53,6 +54,8 @@ export const reducer = function (state = Map(), action) {
 
     return state;
 };
+
+
 
 
 
