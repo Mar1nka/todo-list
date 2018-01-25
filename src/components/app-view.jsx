@@ -9,21 +9,20 @@ export class AppView extends React.Component {
         super(props);
     }
 
-
     render() {
         return <div className={"app"}>
-            <CategoryView categories={this.props.categories}/>
-            <TaskView tasks={this.props.tasks}/>
+            <CategoryView categories={this.props.categories} activeCategoryId={this.props.activeCategoryId} />
+            <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}/>
         </div>
     }
 }
 
 
 function mapStateToProps(state) {
-    console.log('mapStateToProps');
     return {
-        categories: state.categoryReducer.get('categories'),
-        tasks: state.taskReducer.get('tasks')
+        categories: state.categoryReducer.categories,
+        activeCategoryId: state.categoryReducer.activeCategoryId,
+        tasks: state.taskReducer.filter(task => task.categoryId === state.categoryReducer.activeCategoryId),
     };
 }
 

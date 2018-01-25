@@ -1,4 +1,30 @@
 
-.category-item{
+.category-item {
+    display: flex;
+}
 
+.category-item__title {
+    display: inline-block;
+    width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-item--active {
+    background: #f3fdff;
+}
+
+.category-item__button-expand {
+    border: none;
+    background: none;
+    -webkit-user-select: none;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.category-item__button-expand--active {
+    transform: rotate(90deg);
+    transition: transform 0.3s;
 }

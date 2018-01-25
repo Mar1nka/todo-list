@@ -1,6 +1,7 @@
 import React from 'react';
 import {addTask} from '../../../actions/task-actions.jsx';
 import {connect} from 'react-redux';
+import Task from '../../../models/task';
 
 class TaskCreate extends React.Component {
     constructor(props) {
@@ -14,8 +15,13 @@ class TaskCreate extends React.Component {
         const taskTitle = this.refs.taskInput.value.trim();
 
         if (taskTitle !== "") {
-            this.refs.taskInput.value ="";
-            const task = {title: taskTitle};
+            this.refs.taskInput.value = "";
+
+            const task = new Task({
+                title: taskTitle,
+                categoryId: this.props.activeCategoryId
+            });
+
             const action = addTask(task);
 
             this.props.dispatch(action);
@@ -24,8 +30,8 @@ class TaskCreate extends React.Component {
 
     render() {
         return <form>
-            <input ref="taskInput" placeholder="Text input with button" />
-            <button onClick = {this.createTask}>Add</button>
+            <input ref="taskInput" placeholder="Enter task title" />
+            <button onClick={this.createTask}>Add</button>
         </form>
     }
 }

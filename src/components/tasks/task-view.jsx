@@ -7,10 +7,14 @@ import './tasks.css';
 export class TaskView extends React.Component {
 
     render() {
-        return <div className={"tasks"}>
-            <TaskCreate />
-            <TasksList {...this.props} />
-        </div>
+        if(this.props.activeCategoryId) {
+            return <div className={"tasks"}>
+                <TaskCreate activeCategoryId={this.props.activeCategoryId}/>
+                <TasksList {...this.props} />
+            </div>
+        } else {
+            return <div className={"tasks"}/>;
+        }
     }
 }
 

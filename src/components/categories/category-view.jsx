@@ -13,16 +13,3 @@ export class CategoryView extends React.Component {
         </div>
     }
 }
-
-// function mapStateToProps(state) {
-//     console.log('state', state);
-//     return {
-//         categories: state.categoryReducer.get("categories"),
-//         activeCategory: state.get("activeCategory")
-//
-//     };
-// }
-//
-// const connectedCategoryView = connect(mapStateToProps, actions)(CategoryView);
-//
-// export {connectedCategoryView as CategoryView}
