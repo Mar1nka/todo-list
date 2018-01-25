@@ -1,11 +1,15 @@
 import React from 'react';
+import {addCategory} from '../../../actions/category-actions.jsx';
+import {connect} from 'react-redux';
 
-export default class CategoryCreate extends React.Component {
+class CategoryCreate extends React.Component {
     constructor(props) {
         super(props);
+
+        this.addCategory = this.addCategory.bind(this);
     }
 
-    onClick(event) {
+    addCategory(event) {
         event.preventDefault();
 
         const categoryTitle = this.refs.categoryInput.value.trim();
@@ -13,14 +17,17 @@ export default class CategoryCreate extends React.Component {
         if (categoryTitle !== "") {
             this.refs.categoryInput.value ="";
             const category = {title: categoryTitle};
-            return this.props.addCategory(category);
+            const action = addCategory(category);
+            this.props.dispatch(action);
         }
     }
 
     render() {
         return <form>
             <input ref="categoryInput" placeholder="Enter category title" />
-            <button onClick = {this.onClick.bind(this)}>Add</button>
+            <button onClick = {this.addCategory}>Add</button>
         </form>
     }
 };
+
+export default connect()(CategoryCreate);

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {TaskView} from './tasks/task-view.jsx';
+import {CategoryView} from './categories/category-view.jsx';
 import './app.css';
 
 export class AppView extends React.Component {
@@ -8,10 +9,10 @@ export class AppView extends React.Component {
         super(props);
     }
 
-//                <CategoryView categories={this.props.categories}/>
 
     render() {
         return <div className={"app"}>
+            <CategoryView categories={this.props.categories}/>
             <TaskView tasks={this.props.tasks}/>
         </div>
     }
@@ -19,9 +20,10 @@ export class AppView extends React.Component {
 
 
 function mapStateToProps(state) {
+    console.log('mapStateToProps');
     return {
         categories: state.categoryReducer.get('categories'),
-        tasks: state.categoryReducer.get('activeCategory').tasks
+        tasks: state.taskReducer.get('tasks')
     };
 }
 
