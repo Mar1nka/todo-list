@@ -25,17 +25,35 @@ export const categoryReducer = function (state = {categories: initialState.categ
             const removeIndex = state.categories.indexOf(action.category);
             let activeCategoryId = state.activeCategoryId;
 
-            if(state.activeCategoryId === action.category.id){
+            if (state.activeCategoryId === action.category.id) {
                 activeCategoryId = null;
             }
 
             return {
                 categories: [...state.categories.slice(0, removeIndex), ...state.categories.slice(removeIndex + 1)],
-            activeCategoryId: activeCategoryId};
+                activeCategoryId: activeCategoryId
+            };
 
 
         case 'SET_ACTIVE_CATEGORY':
-            return {...state,  activeCategoryId: action.category.id};
+            return {...state, activeCategoryId: action.category.id};
+
+        case 'CHANGE_EXPAND_CATEGORY':
+
+            const updatedCategory = {
+                ...action.category,
+                isExpand: !action.category.isExpand
+            };
+
+            state = state.categories.map((category, index) => {
+                if (category === action.category) {
+                    return updatedCategory;
+                }
+
+                return category;
+            });
+
+            return [...state];
     }
 
     return state;

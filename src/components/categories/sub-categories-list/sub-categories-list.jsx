@@ -1,42 +1,41 @@
 import React from 'react';
 import CategoryItem from '../category-item/category-item.jsx';
-import './category-list.css'
+import './sub-categories-list.css'
 
-export default class CategoriesList extends React.Component {
+export default class SubCategoriesList extends React.Component {
     constructor(props) {
         super(props);
     }
 
 
-
     getSubCategories(category) {
         let subCategories = [];
 
-        for(let i = 0; i < this.props.categories.length; i++) {
-            if(this.props.categories[i].parentId === category.id) {
-                subCategories.push(this.props.categories[i])
+        for (let i = 0; i < this.props.allCategories.length; i++) {
+            if (this.props.allCategories[i].parentId === category.id) {
+                subCategories.push(this.props.allCategories[i])
             }
         }
-
 
         return subCategories;
     }
 
     render() {
-
-
-        return <div className={"category-list"}>
-            {this.props.categories.map((category, index) => {
-                    if (category.parentId === null) {
+        if(this.props.isExpandParent) {
+            return <div className={"sub-category-list"}>
+                {this.props.categories.map((category, index) => {
                         return <CategoryItem key={index}
                                              item={category}
                                              activeCategoryId={this.props.activeCategoryId}
                                              subCategories={this.getSubCategories(category)}
-                                             allCategories={this.props.categories}
+                                             allCategories={this.props.allCategories}
                         />
+
                     }
-                }
-            )}
-        </div>
+                )}
+            </div>
+        } else {
+            return <div />
+        }
     }
 }

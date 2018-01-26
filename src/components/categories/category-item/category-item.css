@@ -28,3 +28,15 @@ button:focus {
     transform: rotate(90deg);
     transition: transform 0.3s;
 }
+
+.category-item__button-expand--not-display {
+    visibility: hidden;
+}
+
+.category-item__sub-category {
+
+}
+
+.category-item__sub-category--not-display {
+    display: none;
+}

@@ -33,5 +33,11 @@ const addSubCategory = function (category) {
     }
 };
 
+const changeExpandCategory = function (category) {
+    return {
+        type: "CHANGE_EXPAND_CATEGORY",
+        category
+    }
+};
 
-export {addCategory, activeCategory, renameCategory, deleteCategory, addSubCategory};
+export {addCategory, activeCategory, renameCategory, deleteCategory, addSubCategory, changeExpandCategory};

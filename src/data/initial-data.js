@@ -1,13 +1,36 @@
 import Category from '../models/category.js';
 import Task from '../models/task.js';
 
+const category1 = new Category({
+    title: 'Hobby',
+    isExpand: false
+});
+
+const category2 = new Category({
+    title: 'Music',
+});
+
+const subCategory1 = new Category({
+    title: 'sub hobby',
+    parentId: category1.id
+});
+
+const subSubCategory1 = new Category({
+    title: 'sub sub hobby',
+    parentId: subCategory1.id
+});
+
+const subCategory2 = new Category({
+    title: 'sub music',
+    parentId: category2.id
+});
+
+
+
 const categories = [
-    new Category({
-        title: 'Hobby'
-    }),
-    new Category({
-        title: 'Music'
-    })
+    category1,
+    subCategory1,
+    category2,
 ];
 
 const tasks = [
