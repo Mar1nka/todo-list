@@ -37,6 +37,15 @@ export const taskReducer = function (state = initialState.tasks, action) {
         case 'RENAME_TASK':
             return state;
 
+        case 'DELETE_CATEGORY':
+            let categoryId = action.category.id;
+
+            state = state.filter((task) => {
+                return task.categoryId !== categoryId;
+            });
+
+            return [...state];
+
     }
 
     return state;

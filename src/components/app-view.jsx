@@ -11,7 +11,7 @@ export class AppView extends React.Component {
 
     render() {
         return <div className={"app"}>
-            <CategoryView categories={this.props.categories} activeCategoryId={this.props.activeCategoryId} />
+            <CategoryView allCategories={this.props.categories} activeCategoryId={this.props.activeCategoryId} />
             <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}/>
         </div>
     }

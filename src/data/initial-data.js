@@ -3,7 +3,7 @@ import Task from '../models/task.js';
 
 const category1 = new Category({
     title: 'Hobby',
-    isExpand: false
+    isExpanded: false
 });
 
 const category2 = new Category({
@@ -30,7 +30,9 @@ const subCategory2 = new Category({
 const categories = [
     category1,
     subCategory1,
+    subSubCategory1,
     category2,
+    subCategory2
 ];
 
 const tasks = [

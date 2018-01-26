@@ -8,33 +8,20 @@ export default class CategoriesList extends React.Component {
     }
 
 
+    render() {
+        let categoryListClass = "category-list";
 
-    getSubCategories(category) {
-        let subCategories = [];
-
-        for(let i = 0; i < this.props.categories.length; i++) {
-            if(this.props.categories[i].parentId === category.id) {
-                subCategories.push(this.props.categories[i])
-            }
+        if (this.props.isSubCategories) {
+            categoryListClass += ' ' + 'category-list--sub-list';
         }
 
-
-        return subCategories;
-    }
-
-    render() {
-
-
-        return <div className={"category-list"}>
+        return <div className={categoryListClass}>
             {this.props.categories.map((category, index) => {
-                    if (category.parentId === null) {
-                        return <CategoryItem key={index}
-                                             item={category}
+                        return <CategoryItem key={category.id}
+                                             category={category}
                                              activeCategoryId={this.props.activeCategoryId}
-                                             subCategories={this.getSubCategories(category)}
-                                             allCategories={this.props.categories}
+                                             allCategories={this.props.allCategories}
                         />
-                    }
                 }
             )}
         </div>

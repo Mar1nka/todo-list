@@ -2,3 +2,7 @@
 .category-list{
 
 }
+
+.category-list--sub-list {
+ padding-left: 20px;
+}

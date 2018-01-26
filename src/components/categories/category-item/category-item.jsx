@@ -7,10 +7,8 @@ import {
     changeExpandCategory
 } from '../../../actions/category-actions.jsx';
 import CategoriesList from '../categories-list/categories-list.jsx';
-import SubCategoriesList from '../sub-categories-list/sub-categories-list.jsx';
-import './category-item.css'
 import {connect} from 'react-redux';
-import Category from "../../../models/category";
+import './category-item.css'
 
 class CategoryItem extends React.Component {
     constructor(props) {
@@ -21,73 +19,82 @@ class CategoryItem extends React.Component {
         this.renameCategory = this.renameCategory.bind(this);
         this.deleteCategory = this.deleteCategory.bind(this);
         this.addSubCategory = this.addSubCategory.bind(this);
-
-        //test
-        //this.subCategories = this.props.item.id === 1 ? [new Category({title:'SubCategory'})] : [];
     }
 
     activeCategory() {
-        const action = activeCategory(this.props.item);
+        const action = activeCategory(this.props.category);
         this.props.dispatch(action);
     }
 
     changeExpandCategory() {
-        const action = changeExpandCategory(this.props.item);
+        const action = changeExpandCategory(this.props.category);
         this.props.dispatch(action);
     }
 
     renameCategory() {
-        const action = renameCategory(this.props.item);
+        const action = renameCategory(this.props.category);
         this.props.dispatch(action);
     }
 
     deleteCategory() {
-        const action = deleteCategory(this.props.item);
+        const action = deleteCategory(this.props.category);
         this.props.dispatch(action);
     }
 
     addSubCategory() {
-        const action = addSubCategory(this.props.item);
+        const action = addSubCategory(this.props.category);
         this.props.dispatch(action);
     }
 
+    getCategories(parentId) {
+        let allCategories = this.props.allCategories;
+        let categories = [];
+
+        for (let category of allCategories) {
+            if (category.parentId === parentId) {
+                categories.push(category)
+            }
+        }
+
+        return categories;
+    }
+
     render() {
+        const currentCategory = this.props.category;
+        const categoryItemContentClass = currentCategory.id === this.props.activeCategoryId ?
+            'category-item__content category-item__content--active' : 'category-item__content';
 
-        const categoryItemClass = this.props.item.id === this.props.activeCategoryId ?
-            'category-item category-item--active' : 'category-item';
+        let subCategories = this.getCategories(currentCategory.id);
+        let hasChildren = subCategories.length;
+        let categoryItemButtonExpandClass = 'category-item__button-expand ';
 
-        let categoryItemButtonExpandClassPart1 = 'category-item__button-expand category-item__button-expand--not-display';
-        let hasExpand = this.props.subCategories.length;
-
-        if (hasExpand) {
-            categoryItemButtonExpandClassPart1 = 'category-item__button-expand';
+        if (hasChildren) {
+            if (currentCategory.isExpanded) {
+                categoryItemButtonExpandClass += 'category-item__button-expand--active';
+            }
+        } else {
+            categoryItemButtonExpandClass += 'category-item__button-expand--hidden';
         }
 
-        let categoryItemButtonExpandClassPart2 = '';
+        return <div className={"category-item"}>
+            <div className={categoryItemContentClass} onClick={this.activeCategory}>
+                <button className={categoryItemButtonExpandClass} onClick={this.changeExpandCategory}>></button>
+                <span className={"category-item__title"}>{currentCategory.title}</span>
+                <button className={"category-item__button-rename"} onClick={this.renameCategory}>rename</button>
+                <button className={"category-item__button-delete "} onClick={this.deleteCategory}>delete</button>
+                <button className={"category-item__button-add-sub-category "} onClick={this.addSubCategory}>add sub
+                    category
+                </button>
+            </div>
 
-        if (this.props.item.isExpand) {
-            categoryItemButtonExpandClassPart2 = 'category-item__button-expand--active';
-        }
 
-
-        let categoryItemButtonExpandClass = categoryItemButtonExpandClassPart1 + categoryItemButtonExpandClassPart2;
-
-        //this.props.item.id === this.props.activeCategoryId ?
-
-
-        return <div className={categoryItemClass}>
-            <button className={categoryItemButtonExpandClass} onClick={this.changeExpandCategory}>></button>
-            <span className={"category-item__title"}>{this.props.item.title}</span>
-            <button className={"category-item__button-rename"} onClick={this.renameCategory}>rename</button>
-            <button className={"category-item__button-delete "} onClick={this.deleteCategory}>delete</button>
-            <button className={"category-item__button-add-sub-category "} onClick={this.addSubCategory}>add sub category
-            </button>
-
-            <SubCategoriesList className={'category-item__sub-category'} categories={this.props.subCategories}
-                               allCategories={this.props.allCategories} activeCategoryId={this.props.activeCategoryId}
-                               isExpandParent={this.props.item.isExpand}/>
-
+            {currentCategory.isExpanded ? <CategoriesList className={'category-item__sub-category'}
+                                                          categories={subCategories}
+                                                          allCategories={this.props.allCategories}
+                                                          activeCategoryId={this.props.activeCategoryId}
+                                                          isSubCategories={true}/> : null}
         </div>
+
     }
 };
 

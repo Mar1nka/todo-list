@@ -34,7 +34,6 @@ export const categoryReducer = function (state = {categories: initialState.categ
                 activeCategoryId: activeCategoryId
             };
 
-
         case 'SET_ACTIVE_CATEGORY':
             return {...state, activeCategoryId: action.category.id};
 
@@ -42,10 +41,10 @@ export const categoryReducer = function (state = {categories: initialState.categ
 
             const updatedCategory = {
                 ...action.category,
-                isExpand: !action.category.isExpand
+                isExpanded: !action.category.isExpanded
             };
 
-            state = state.categories.map((category, index) => {
+            state.categories = state.categories.map((category, index) => {
                 if (category === action.category) {
                     return updatedCategory;
                 }
@@ -53,7 +52,7 @@ export const categoryReducer = function (state = {categories: initialState.categ
                 return category;
             });
 
-            return [...state];
+            return {...state};
     }
 
     return state;

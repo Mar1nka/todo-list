@@ -1,23 +1,37 @@
 
 .category-item {
     display: flex;
+    flex-direction: column;
+}
+
+.category-item__content {
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.category-item__content--active {
+    background: #f3fdff;
 }
 
 .category-item__title {
     display: inline-block;
-    width: 70px;
+    width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.category-item--active {
-    background: #f3fdff;
-}
+
 
 .category-item__button-expand {
     border: none;
     background: none;
     -webkit-user-select: none;
+}
+
+.category-item__button-expand--hidden {
+    visibility: hidden;
 }
 
 button:focus {
@@ -34,7 +48,7 @@ button:focus {
 }
 
 .category-item__sub-category {
-
+    padding-left: 20px;
 }
 
 .category-item__sub-category--not-display {

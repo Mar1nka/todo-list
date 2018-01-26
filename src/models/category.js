@@ -6,7 +6,7 @@ export default class Category {
         this.id =  ++modelId;
         this.parentId = data.parentId || null;
         this.title =  data.title || '';
-        this.isExpand = data.isExpand || false;
+        this.isExpanded = data.isExpanded || false;
         // this.list = data.list || [];
 
     }
