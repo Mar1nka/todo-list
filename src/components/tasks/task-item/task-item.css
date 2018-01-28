@@ -1,0 +1,20 @@
+.task-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid lightgrey;
+    padding: 20px 10px;
+}
+
+.task-item__complete-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.task-item__title {
+    flex: 1;
+}
+
+.task-item__rename-button {
+    cursor: pointer;
+}

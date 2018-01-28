@@ -1,6 +1,7 @@
 import React from 'react';
-import {addCategory} from '../../../actions/category-actions.jsx';
+import {addCategory} from '../../../actions/category-actions.js';
 import {connect} from 'react-redux';
+import './category-create.css';
 
 class CategoryCreate extends React.Component {
     constructor(props) {
@@ -23,9 +24,9 @@ class CategoryCreate extends React.Component {
     }
 
     render() {
-        return <form>
+        return <form className={"category-create-form"}>
             <input ref="categoryInput" placeholder="Enter category title" />
-            <button onClick = {this.addCategory}>Add</button>
+            <button className={"category-create__add-button"} onClick = {this.addCategory}>Add</button>
         </form>
     }
 };

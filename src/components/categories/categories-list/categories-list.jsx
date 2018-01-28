@@ -12,16 +12,16 @@ export default class CategoriesList extends React.Component {
         let categoryListClass = "category-list";
 
         if (this.props.isSubCategories) {
-            categoryListClass += ' ' + 'category-list--sub-list';
+            categoryListClass += ' ' + 'category-list--sub-categories';
         }
 
         return <div className={categoryListClass}>
             {this.props.categories.map((category, index) => {
-                        return <CategoryItem key={category.id}
-                                             category={category}
-                                             activeCategoryId={this.props.activeCategoryId}
-                                             allCategories={this.props.allCategories}
-                        />
+                    return <CategoryItem key={category.id}
+                                         category={category}
+                                         activeCategoryId={this.props.activeCategoryId}
+                                         allCategories={this.props.allCategories}
+                    />
                 }
             )}
         </div>

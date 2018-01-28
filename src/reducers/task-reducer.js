@@ -38,6 +38,7 @@ export const taskReducer = function (state = initialState.tasks, action) {
             return state;
 
         case 'DELETE_CATEGORY':
+            // TODO remove tasks of subCategories of remove category
             let categoryId = action.category.id;
 
             state = state.filter((task) => {

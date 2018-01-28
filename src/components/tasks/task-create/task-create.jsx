@@ -2,6 +2,7 @@ import React from 'react';
 import {addTask} from '../../../actions/task-actions.jsx';
 import {connect} from 'react-redux';
 import Task from '../../../models/task';
+import './task-create.css';
 
 class TaskCreate extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class TaskCreate extends React.Component {
     }
 
     render() {
-        return <form>
+        return <form className={"task-create-form"}>
             <input ref="taskInput" placeholder="Enter task title" />
             <button onClick={this.createTask}>Add</button>
         </form>

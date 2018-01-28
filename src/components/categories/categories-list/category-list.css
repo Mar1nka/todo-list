@@ -1,8 +1,13 @@
 
 .category-list{
-
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
-.category-list--sub-list {
- padding-left: 20px;
+
+.category-list--sub-categories{
+    padding-left: 20px;
+    padding-right: 0;
+    overflow-x: hidden;
 }

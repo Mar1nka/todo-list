@@ -1,0 +1,19 @@
+.task-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-filter__completed-filter {
+    margin: 0 20px;
+}
+
+.task-filter__search-form {
+}
+
+.search-form__clean-button {
+    cursor: pointer;
+}
+
+.completed-filter__checkbox {
+    cursor: pointer;
+}

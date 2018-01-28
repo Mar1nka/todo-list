@@ -11,7 +11,6 @@ export const categoryReducer = function (state = {categories: initialState.categ
                 tasks: []
             });
 
-
             return {
                 activeCategoryId: newCategory.id,
                 categories: [...state.categories, newCategory]
@@ -22,16 +21,19 @@ export const categoryReducer = function (state = {categories: initialState.categ
             return state;
 
         case 'DELETE_CATEGORY':
-            const removeIndex = state.categories.indexOf(action.category);
-            let activeCategoryId = state.activeCategoryId;
+            // const removeIndex = state.categories.indexOf(action.category);
+            // let activeCategoryId = state.activeCategoryId;
+            //
+            // if (state.activeCategoryId === action.category.id) {
+            //     activeCategoryId = null;
+            // }
 
-            if (state.activeCategoryId === action.category.id) {
-                activeCategoryId = null;
-            }
+            removeSubCategories(state.categories, action.category, state.activeCategoryId);
+
 
             return {
-                categories: [...state.categories.slice(0, removeIndex), ...state.categories.slice(removeIndex + 1)],
-                activeCategoryId: activeCategoryId
+                categories: [...state.categories],
+                activeCategoryId: state.activeCategoryId
             };
 
         case 'SET_ACTIVE_CATEGORY':
@@ -57,4 +59,22 @@ export const categoryReducer = function (state = {categories: initialState.categ
 
     return state;
 };
+
+function removeSubCategories(categories, categoryForRemove, activeCategoryId) {
+    const removeIndex = categories.indexOf(categoryForRemove);
+
+    if (activeCategoryId === categoryForRemove.id) {
+        activeCategoryId = null;
+    }
+
+    categories.splice(removeIndex, 1);
+
+    for(let category of categories) {
+        if(category.parentId === categoryForRemove.id) {
+            removeSubCategories(categories, category, activeCategoryId);
+        }
+    }
+
+    return categories;
+}
 

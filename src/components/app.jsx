@@ -11,5 +11,5 @@ ReactDOM.render(
     <Provider store={store}>
         <AppView/>
     </Provider>,
-    document.getElementById("main-components")
+    document.querySelector(".app")
 );

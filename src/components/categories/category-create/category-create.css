@@ -1,0 +1,8 @@
+.category-create-form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.category-create__add-button {
+    cursor: pointer;
+}

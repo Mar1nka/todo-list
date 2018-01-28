@@ -5,7 +5,7 @@ import {
     deleteCategory,
     activeCategory,
     changeExpandCategory
-} from '../../../actions/category-actions.jsx';
+} from '../../../actions/category-actions.js';
 import CategoriesList from '../categories-list/categories-list.jsx';
 import {connect} from 'react-redux';
 import './category-item.css'
@@ -78,21 +78,24 @@ class CategoryItem extends React.Component {
 
         return <div className={"category-item"}>
             <div className={categoryItemContentClass} onClick={this.activeCategory}>
-                <button className={categoryItemButtonExpandClass} onClick={this.changeExpandCategory}>></button>
-                <span className={"category-item__title"}>{currentCategory.title}</span>
-                <button className={"category-item__button-rename"} onClick={this.renameCategory}>rename</button>
-                <button className={"category-item__button-delete "} onClick={this.deleteCategory}>delete</button>
-                <button className={"category-item__button-add-sub-category "} onClick={this.addSubCategory}>add sub
-                    category
-                </button>
+                <div className={"category-item__title-wrapper"}>
+                    <button className={categoryItemButtonExpandClass} onClick={this.changeExpandCategory}>></button>
+                    <span className={"category-item__title"}>{currentCategory.title}</span>
+                </div>
+                <div className={"category-item__buttons"}>
+                    <button className={"category-item__button-rename"} onClick={this.renameCategory} >rename</button>
+                    <button className={"category-item__button-add-sub-category"} onClick={this.addSubCategory} >+
+                    </button>
+                    <button className={"category-item__button-delete"} onClick={this.deleteCategory}>x</button>
+                </div>
             </div>
 
 
-            {currentCategory.isExpanded ? <CategoriesList className={'category-item__sub-category'}
-                                                          categories={subCategories}
-                                                          allCategories={this.props.allCategories}
-                                                          activeCategoryId={this.props.activeCategoryId}
-                                                          isSubCategories={true}/> : null}
+            {currentCategory.isExpanded ?
+                <CategoriesList categories={subCategories}
+                                allCategories={this.props.allCategories}
+                                activeCategoryId={this.props.activeCategoryId}
+                                isSubCategories={true}/> : null}
         </div>
 
     }
