@@ -18,7 +18,21 @@ export const categoryReducer = function (state = {categories: initialState.categ
 
 
         case 'RENAME_CATEGORY':
-            return state;
+            let index;
+
+            for (let i = 0; i < state.categories.length; i++) {
+                if (state.categories[i].id === action.category.id) {
+                    index = i;
+                    break;
+                }
+            }
+
+            state.categories = [...state.categories.slice(0, index),
+                action.category,
+                ...state.categories.slice(index + 1)];
+
+            return {...state};
+
 
         case 'DELETE_CATEGORY':
             removeSubCategories(state.categories, action.category, state.activeCategoryId);
@@ -37,7 +51,7 @@ export const categoryReducer = function (state = {categories: initialState.categ
                 isExpanded: !action.category.isExpanded
             };
 
-            state.categories = state.categories.map((category, index) => {
+            state.categories = state.categories.map((category) => {
                 if (category === action.category) {
                     return updatedCategory;
                 }

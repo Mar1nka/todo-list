@@ -12,11 +12,18 @@ const setCompletedTask = function (task) {
     }
 };
 
-const editTask = function (task) {
+const updateTask = function (task) {
     return {
-        type: "EDIT_TASK",
+        type: "UPDATE_TASK",
         task
     }
 };
 
-export {addTask, setCompletedTask, editTask};
+const setEditTask = function (editTask) {
+    return {
+        type: "SET_EDIT_TASK",
+        editTask
+    }
+};
+
+export {addTask, setCompletedTask, updateTask, setEditTask};

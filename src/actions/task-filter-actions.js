@@ -5,7 +5,6 @@ const setSearchText = function (textSearch) {
     }
 };
 
-
 const toggleCompleteFilter = function () {
     return {
         type: "TOGGLE_COMPLETE_FILTER",

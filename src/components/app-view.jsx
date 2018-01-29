@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {TaskView} from './tasks/task-view.jsx';
 import {CategoryView} from './categories/category-view.jsx';
-import TaskFilter from './task-filter/task-filter.jsx'
+import Header from './header/header.jsx'
 import ProgressBar from './progress-bar/progress-bar.jsx'
-import TaskEdit from './task-edit/task-edit.jsx'
 import './app.css';
 import '../styles/main.css'
 
@@ -14,19 +13,21 @@ export class AppView extends React.Component {
     }
 
     render() {
+        const isEditTaskEnabled = !!this.props.editTask;
+        let progressBar = <ProgressBar progressValue={this.props.completeCategoriesPercentage}/>
+
+        if (isEditTaskEnabled) {
+            progressBar = null;
+        }
+
         return <div className={"app__content"}>
-            <div className={"header"}>
-                <div className={"header__title"}>To-Do List</div>
-                <TaskFilter isTaskCompleted={this.isTaskCompleted}/>
-            </div>
+            <Header editTask={this.props.editTask} isTaskCompleted={this.props.isTaskCompleted}/>
+            {progressBar}
             <div className={"main"}>
-                <ProgressBar progressValue={this.props.completeCategoriesPercentage}/>
                 <div className={"main__content"}>
                     <CategoryView allCategories={this.props.categories} activeCategoryId={this.props.activeCategoryId}/>
-                    {this.props.taskEdit.id === null ?
-                        <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}/>
-                        : <TaskEdit taskEdit={this.props.taskEdit} />}
-
+                    <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}
+                              editTask={this.props.editTask}/>
                 </div>
             </div>
 
@@ -42,7 +43,7 @@ function mapStateToProps(state) {
     const isCompletedTaskFilterEnabled = state.taskFilterReducer.isCompleted;
     const textSearch = state.taskFilterReducer.textSearch;
     const completeCategoriesPercentage = getCompleteCategoriesPercentage(categories, tasks);
-    const taskEdit = state.taskEditReducer;
+    const editTask = state.taskEditReducer;
 
     return {
         'isTaskCompleted': isCompletedTaskFilterEnabled,
@@ -50,7 +51,7 @@ function mapStateToProps(state) {
         'activeCategoryId': activeCategoryId,
         'tasks': filterTasks(tasks, activeCategoryId, isCompletedTaskFilterEnabled, textSearch),
         'completeCategoriesPercentage': completeCategoriesPercentage,
-        'taskEdit': taskEdit
+        'editTask': editTask
     };
 }
 

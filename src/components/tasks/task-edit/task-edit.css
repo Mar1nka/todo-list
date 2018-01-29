@@ -1,9 +1,6 @@
 .task-edit {
     display: flex;
     flex-direction: column;
-    width: 55%;
-    padding: 20px;
-    border: 1px solid lightgrey;
 }
 
 .task-edit__buttons {

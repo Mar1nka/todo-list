@@ -1,6 +1,5 @@
 import React from 'react';
-import {cleanTaskEdit} from '../../actions/task-edit-action.jsx';
-import {editTask} from '../../actions/task-actions.jsx';
+import {updateTask, setEditTask} from '../../../actions/task-actions.jsx';
 import {connect} from 'react-redux';
 import './task-edit.css';
 
@@ -13,37 +12,28 @@ import './task-edit.css';
     }
 
     saveChanges() {
-        let isCompleted = false;
-
-        if(this.refs.checkboxIsCompleted.value === "on") {
-            isCompleted = true;
-        }
-
-        const taskEdit = {
-            id: this.props.taskEdit.id,
-            categoryId: this.props.taskEdit.categoryId,
+        const task = {
+            id: this.props.editTask.id,
+            categoryId: this.props.editTask.categoryId,
             title: this.refs.titleInput.value.trim(),
             description: this.refs.descriptionTextArea.value.trim(),
-            isCompleted: isCompleted
-        }
-
-
-
-        const action = editTask(taskEdit);
-        this.props.dispatch(action);
-
-
-        this.cancel();
-    }
-
-    cancel() {
-        const taskEdit = {
-          id: null
+            isCompleted: this.refs.checkboxIsCompleted.checked
         };
 
-        const action = cleanTaskEdit(taskEdit);
+        const action = updateTask(task);
+        this.props.dispatch(action);
+
+        this.clearEditTask();
+    }
+
+     clearEditTask() {
+         const action = setEditTask(null);
         this.props.dispatch(action);
     }
+
+     cancel() {
+         this.clearEditTask();
+     }
 
     render() {
         return <div className={"task-edit"}>
@@ -51,15 +41,15 @@ import './task-edit.css';
                 <button className={"task-edit__save-button"} onClick={this.saveChanges}>Save changes</button>
                 <button className={"task-edit__cancel-button"} onClick={this.cancel}>Cancel</button>
             </div>
-            <input className={"task-edit__label"} ref="titleInput" defaultValue={this.props.taskEdit.title} />
+            <input className={"task-edit__label"} ref="titleInput" defaultValue={this.props.editTask.title}/>
             <div className={"task-edit__completedTask"}>
                 <input className={"completedTask__checkbox"} ref={"checkboxIsCompleted"} type={"checkbox"}
-                       id="task-edit-completed" defaultChecked={this.props.taskEdit.isCompleted}
+                       id="task-edit-completed" defaultChecked={this.props.editTask.isCompleted}
                 />
                 <label htmlFor="task-edit-completed">Done</label>
             </div>
             <textarea className={"task-edit__description"} ref={"descriptionTextArea"} name="text" rows={"20"}
-                      placeholder={"Description"} defaultValue={this.props.taskEdit.description}/>
+                      placeholder={"Description"} defaultValue={this.props.editTask.description}/>
         </div>
     }
 }

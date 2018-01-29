@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import Modal from 'react-modal';
 import {
     renameCategory,
     addSubCategory,
@@ -7,18 +9,29 @@ import {
     changeExpandCategory
 } from '../../../actions/category-actions.js';
 import CategoriesList from '../categories-list/categories-list.jsx';
-import {connect} from 'react-redux';
+
 import './category-item.css'
 
 class CategoryItem extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            modalIsOpen: false
+        };
+
         this.activeCategory = this.activeCategory.bind(this);
         this.changeExpandCategory = this.changeExpandCategory.bind(this);
         this.renameCategory = this.renameCategory.bind(this);
         this.deleteCategory = this.deleteCategory.bind(this);
         this.addSubCategory = this.addSubCategory.bind(this);
+
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    componentWillMount() {
+        Modal.setAppElement('body');
     }
 
     activeCategory() {
@@ -31,9 +44,15 @@ class CategoryItem extends React.Component {
         this.props.dispatch(action);
     }
 
+    /**
+     * Modal window https://www.npmjs.com/package/react-modal
+     */
     renameCategory() {
-        const action = renameCategory(this.props.category);
+        const category = {...this.props.category, title: this.refs.categoryTitleInput.value};
+        const action = renameCategory(category);
+
         this.props.dispatch(action);
+        this.closeModal();
     }
 
     deleteCategory() {
@@ -59,6 +78,14 @@ class CategoryItem extends React.Component {
         return categories;
     }
 
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false});
+    }
+
     render() {
         const currentCategory = this.props.category;
         const categoryItemContentClass = currentCategory.id === this.props.activeCategoryId ?
@@ -76,6 +103,23 @@ class CategoryItem extends React.Component {
             categoryItemButtonExpandClass += 'category-item__button-expand--hidden';
         }
 
+
+        let categoryModal = <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}>
+            <h2>Edit category</h2>
+            <div>
+                <input ref="categoryTitleInput" type={"text"}
+                       placeholder={"Title"}
+                       defaultValue={currentCategory.title}/>
+            </div>
+            <div>
+                <button onClick={this.renameCategory}>Ok</button>
+                <button onClick={this.closeModal}>Close</button>
+            </div>
+        </Modal>;
+
+
         return <div className={"category-item"}>
             <div className={categoryItemContentClass} onClick={this.activeCategory}>
                 <div className={"category-item__title-wrapper"}>
@@ -83,13 +127,19 @@ class CategoryItem extends React.Component {
                     <span className={"category-item__title"}>{currentCategory.title}</span>
                 </div>
                 <div className={"category-item__buttons"}>
-                    <button className={"category-item__button category-item__button-rename"} onClick={this.renameCategory} >rename</button>
-                    <button className={"category-item__button category-item__button-add-sub-category"} onClick={this.addSubCategory} >+
+                    <button className={"category-item__button category-item__button-rename"}
+                            onClick={this.openModal}>rename
                     </button>
-                    <button className={"category-item__button category-item__button-delete"} onClick={this.deleteCategory}>x</button>
+                    <button className={"category-item__button category-item__button-add-sub-category"}
+                            onClick={this.addSubCategory}>+
+                    </button>
+                    <button className={"category-item__button category-item__button-delete"}
+                            onClick={this.deleteCategory}>x
+                    </button>
                 </div>
             </div>
 
+            {categoryModal}
 
             {currentCategory.isExpanded ?
                 <CategoriesList categories={subCategories}
@@ -99,6 +149,6 @@ class CategoryItem extends React.Component {
         </div>
 
     }
-};
+}
 
 export default connect()(CategoryItem)

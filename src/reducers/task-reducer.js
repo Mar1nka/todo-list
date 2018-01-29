@@ -1,5 +1,4 @@
 import {initialState} from '../data/initial-data.js';
-import Task from "../models/task";
 
 export const taskReducer = function (state = initialState.tasks, action) {
     switch (action.type) {
@@ -24,7 +23,7 @@ export const taskReducer = function (state = initialState.tasks, action) {
                 isCompleted: !action.task.isCompleted
             };
 
-            state = state.map((task, index) => {
+            state = state.map((task) => {
                 if (task === action.task) {
                     return updatedTask;
                 }
@@ -34,7 +33,7 @@ export const taskReducer = function (state = initialState.tasks, action) {
 
             return [...state];
 
-        case 'EDIT_TASK':
+        case 'UPDATE_TASK':
             let index;
 
             for (let i = 0; i < state.length; i++) {
@@ -43,7 +42,6 @@ export const taskReducer = function (state = initialState.tasks, action) {
                     break;
                 }
             }
-
 
             return [...state.slice(0, index),
                 action.task,
