@@ -7,8 +7,6 @@ export default class Category {
         this.parentId = data.parentId || null;
         this.title =  data.title || '';
         this.isExpanded = data.isExpanded || false;
-        // this.list = data.list || [];
-
     }
 
 

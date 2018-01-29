@@ -4,6 +4,7 @@ import {TaskView} from './tasks/task-view.jsx';
 import {CategoryView} from './categories/category-view.jsx';
 import TaskFilter from './task-filter/task-filter.jsx'
 import ProgressBar from './progress-bar/progress-bar.jsx'
+import TaskEdit from './task-edit/task-edit.jsx'
 import './app.css';
 import '../styles/main.css'
 
@@ -22,12 +23,35 @@ export class AppView extends React.Component {
                 <ProgressBar progressValue={this.props.completeCategoriesPercentage}/>
                 <div className={"main__content"}>
                     <CategoryView allCategories={this.props.categories} activeCategoryId={this.props.activeCategoryId}/>
-                    <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}/>
+                    {this.props.taskEdit.id === null ?
+                        <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}/>
+                        : <TaskEdit taskEdit={this.props.taskEdit} />}
+
                 </div>
             </div>
 
         </div>
     }
+}
+
+function mapStateToProps(state) {
+
+    const categories = state.categoryReducer.categories;
+    const tasks = state.taskReducer;
+    const activeCategoryId = state.categoryReducer.activeCategoryId;
+    const isCompletedTaskFilterEnabled = state.taskFilterReducer.isCompleted;
+    const textSearch = state.taskFilterReducer.textSearch;
+    const completeCategoriesPercentage = getCompleteCategoriesPercentage(categories, tasks);
+    const taskEdit = state.taskEditReducer;
+
+    return {
+        'isTaskCompleted': isCompletedTaskFilterEnabled,
+        'categories': categories,
+        'activeCategoryId': activeCategoryId,
+        'tasks': filterTasks(tasks, activeCategoryId, isCompletedTaskFilterEnabled, textSearch),
+        'completeCategoriesPercentage': completeCategoriesPercentage,
+        'taskEdit': taskEdit
+    };
 }
 
 function getCompleteCategoriesPercentage(categories, tasks) {
@@ -81,22 +105,6 @@ function filterTasks(tasks, activeCategoryId, isCompletedTaskFilterEnabled, sear
 }
 
 
-function mapStateToProps(state) {
 
-    const categories = state.categoryReducer.categories;
-    const tasks = state.taskReducer;
-    const activeCategoryId = state.categoryReducer.activeCategoryId;
-    const isCompletedTaskFilterEnabled = state.taskFilterReducer.isCompleted;
-    const textSearch = state.taskFilterReducer.textSearch;
-    const completeCategoriesPercentage = getCompleteCategoriesPercentage(categories, tasks);
-
-    return {
-        'isTaskCompleted': isCompletedTaskFilterEnabled,
-        'categories': categories,
-        'activeCategoryId': activeCategoryId,
-        'tasks': filterTasks(tasks, activeCategoryId, isCompletedTaskFilterEnabled, textSearch),
-        'completeCategoriesPercentage': completeCategoriesPercentage
-    };
-}
 
 export default connect(mapStateToProps)(AppView);

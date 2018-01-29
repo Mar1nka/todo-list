@@ -1,5 +1,6 @@
 import React from 'react';
-import {setCompletedTask, renameTask} from '../../../actions/task-actions.jsx';
+import {setCompletedTask} from '../../../actions/task-actions.jsx';
+import {setEditTask} from '../../../actions/task-edit-action.jsx';
 import {connect} from 'react-redux';
 import './task-item.css';
 
@@ -8,11 +9,17 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props);
         this.changeTaskComplete = this.changeTaskComplete.bind(this);
+        this.editTask = this.editTask.bind(this);
     }
 
 
     changeTaskComplete() {
         const action = setCompletedTask(this.props.item);
+        this.props.dispatch(action);
+    }
+
+    editTask() {
+        const action = setEditTask(this.props.item);
         this.props.dispatch(action);
     }
 
@@ -22,7 +29,7 @@ class TaskItem extends React.Component {
                    className={"task-item__complete-checkbox"} onChange={this.changeTaskComplete}/>
             <span className={"task-item__title"}>{this.props.item.title}</span>
             <div className={"task-item__buttons"}>
-                <button className={"task-item__rename-button"} onClick={() => renameTask(this.props.item)}>rename
+                <button className={"task-item__rename-button"} onClick={this.editTask}>rename
                 </button>
             </div>
 

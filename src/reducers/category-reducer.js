@@ -21,15 +21,7 @@ export const categoryReducer = function (state = {categories: initialState.categ
             return state;
 
         case 'DELETE_CATEGORY':
-            // const removeIndex = state.categories.indexOf(action.category);
-            // let activeCategoryId = state.activeCategoryId;
-            //
-            // if (state.activeCategoryId === action.category.id) {
-            //     activeCategoryId = null;
-            // }
-
             removeSubCategories(state.categories, action.category, state.activeCategoryId);
-
 
             return {
                 categories: [...state.categories],
@@ -40,7 +32,6 @@ export const categoryReducer = function (state = {categories: initialState.categ
             return {...state, activeCategoryId: action.category.id};
 
         case 'CHANGE_EXPAND_CATEGORY':
-
             const updatedCategory = {
                 ...action.category,
                 isExpanded: !action.category.isExpanded

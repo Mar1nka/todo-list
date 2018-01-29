@@ -83,10 +83,10 @@ class CategoryItem extends React.Component {
                     <span className={"category-item__title"}>{currentCategory.title}</span>
                 </div>
                 <div className={"category-item__buttons"}>
-                    <button className={"category-item__button-rename"} onClick={this.renameCategory} >rename</button>
-                    <button className={"category-item__button-add-sub-category"} onClick={this.addSubCategory} >+
+                    <button className={"category-item__button category-item__button-rename"} onClick={this.renameCategory} >rename</button>
+                    <button className={"category-item__button category-item__button-add-sub-category"} onClick={this.addSubCategory} >+
                     </button>
-                    <button className={"category-item__button-delete"} onClick={this.deleteCategory}>x</button>
+                    <button className={"category-item__button category-item__button-delete"} onClick={this.deleteCategory}>x</button>
                 </div>
             </div>
 

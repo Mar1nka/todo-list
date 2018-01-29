@@ -16,5 +16,6 @@ body {
 }
 
 .app {
-    height: 100%;
+    height: calc(100% - 20px);
+    margin-bottom: 20px;
 }

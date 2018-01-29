@@ -34,8 +34,20 @@ export const taskReducer = function (state = initialState.tasks, action) {
 
             return [...state];
 
-        case 'RENAME_TASK':
-            return state;
+        case 'EDIT_TASK':
+            let index;
+
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].id === action.task.id) {
+                    index = i;
+                    break;
+                }
+            }
+
+
+            return [...state.slice(0, index),
+                action.task,
+                ...state.slice(index + 1)];
 
         case 'DELETE_CATEGORY':
             // TODO remove tasks of subCategories of remove category

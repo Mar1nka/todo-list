@@ -26,7 +26,6 @@ const subCategory2 = new Category({
 });
 
 
-
 const categories = [
     category1,
     subCategory1,
@@ -39,7 +38,7 @@ const tasks = [
     new Task({
         categoryId: 1,
         title: 'first',
-        isCompleted: false,
+        isCompleted: true,
         description: ''
     }),
     new Task({
@@ -50,7 +49,16 @@ const tasks = [
     })
 ];
 
+const taskEdit = {
+    id: 1,
+    categoryId: 1,
+    title: 'first',
+    isCompleted: true,
+    description: 'it is first'
+};
+
 export const initialState = {
     'categories': categories,
-    'tasks': tasks
+    'tasks': tasks,
+    'taskEdit': taskEdit
 };

@@ -11,7 +11,6 @@
     justify-content: space-between;
     align-content: center;
     border: 1px solid lightgrey;
-    border-radius: 5px;
 }
 
 .category-item__content--active {
@@ -60,6 +59,11 @@ button:focus {
     visibility: hidden;
 }
 
+.category-item__button {
+    display: flex;
+    align-items: center;
+    margin: 0 2px;
+}
 
 .category-item__button-add-sub-category {
     cursor: pointer;
@@ -71,9 +75,6 @@ button:focus {
     cursor: pointer;
 }
 
-.category-item__button-add-sub-category {
-    cursor: pointer;
-}
 .category-item__button-delete {
     color: red;
     cursor: pointer;
