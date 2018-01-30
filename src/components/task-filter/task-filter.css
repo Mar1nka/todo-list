@@ -12,6 +12,7 @@
 
 .search-form__clean-button {
     cursor: pointer;
+    color: #ff5a5d;
 }
 
 .completed-filter__checkbox {

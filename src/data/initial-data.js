@@ -49,13 +49,14 @@ const tasks = [
     })
 ];
 
-const taskEdit = {
-    id: 1,
-    categoryId: 1,
-    title: 'first',
-    isCompleted: true,
-    description: 'it is first'
-};
+const taskEdit = null;
+//     {
+//     id: 1,
+//     categoryId: 1,
+//     title: 'first',
+//     isCompleted: true,
+//     description: 'it is first'
+// };
 
 export const initialState = {
     'categories': categories,

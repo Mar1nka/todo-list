@@ -3,21 +3,23 @@ import {connect} from 'react-redux';
 import Modal from 'react-modal';
 import {
     renameCategory,
-    addSubCategory,
     deleteCategory,
     activeCategory,
-    changeExpandCategory
+    changeExpandCategory,
+    addCategory
 } from '../../../actions/category-actions.js';
 import CategoriesList from '../categories-list/categories-list.jsx';
 
 import './category-item.css'
+import Category from "../../../models/category";
 
 class CategoryItem extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            modalIsOpen: false
+            modalEditCategoryIsOpen: false,
+            modalAddSubCategoryIsOpen: false
         };
 
         this.activeCategory = this.activeCategory.bind(this);
@@ -26,8 +28,23 @@ class CategoryItem extends React.Component {
         this.deleteCategory = this.deleteCategory.bind(this);
         this.addSubCategory = this.addSubCategory.bind(this);
 
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.openEditCategoryModal = this.openEditCategoryModal.bind(this);
+        this.closeEditCategoryModal = this.closeEditCategoryModal.bind(this);
+
+        this.openAddSubCategoryModal = this.openAddSubCategoryModal.bind(this);
+        this.closeAddSubCategoryModal = this.closeAddSubCategoryModal.bind(this);
+
+        this.customStyles = {
+            content: {
+                top: '40%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                border: '2px solid #428bca'
+            }
+        };
     }
 
     componentWillMount() {
@@ -44,15 +61,12 @@ class CategoryItem extends React.Component {
         this.props.dispatch(action);
     }
 
-    /**
-     * Modal window https://www.npmjs.com/package/react-modal
-     */
     renameCategory() {
         const category = {...this.props.category, title: this.refs.categoryTitleInput.value};
         const action = renameCategory(category);
 
         this.props.dispatch(action);
-        this.closeModal();
+        this.closeEditCategoryModal();
     }
 
     deleteCategory() {
@@ -61,8 +75,17 @@ class CategoryItem extends React.Component {
     }
 
     addSubCategory() {
-        const action = addSubCategory(this.props.category);
+        let subCategory = new Category({
+            parentId: this.props.category.id,
+            title: this.refs.subCategoryTitleInput.value
+        });
+
+        console.log()
+
+        const action = addCategory(subCategory);
         this.props.dispatch(action);
+
+        this.closeAddSubCategoryModal();
     }
 
     getCategories(parentId) {
@@ -78,13 +101,34 @@ class CategoryItem extends React.Component {
         return categories;
     }
 
-    openModal() {
-        this.setState({modalIsOpen: true});
+    openEditCategoryModal() {
+        this.setState({
+            modalEditCategoryIsOpen: true,
+            modalAddSubCategoryIsOpen: this.state.modalAddSubCategoryIsOpen
+        });
     }
 
-    closeModal() {
-        this.setState({modalIsOpen: false});
+    closeEditCategoryModal() {
+        this.setState({
+            modalEditCategoryIsOpen: false,
+            modalAddSubCategoryIsOpen: this.state.modalAddSubCategoryIsOpen
+        });
     }
+
+    openAddSubCategoryModal() {
+        this.setState({
+            modalEditCategoryIsOpen: this.state.modalEditCategoryIsOpen,
+            modalAddSubCategoryIsOpen: true
+        });
+    }
+
+    closeAddSubCategoryModal() {
+        this.setState({
+            modalEditCategoryIsOpen: this.state.modalEditCategoryIsOpen,
+            modalAddSubCategoryIsOpen: false
+        });
+    }
+
 
     render() {
         const currentCategory = this.props.category;
@@ -104,18 +148,40 @@ class CategoryItem extends React.Component {
         }
 
 
-        let categoryModal = <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}>
-            <h2>Edit category</h2>
-            <div>
-                <input ref="categoryTitleInput" type={"text"}
-                       placeholder={"Title"}
-                       defaultValue={currentCategory.title}/>
+        let editCategoryModal = <Modal
+            isOpen={this.state.modalEditCategoryIsOpen}
+            onRequestClose={this.closeEditCategoryModal}
+            style={this.customStyles}>
+
+            <div className={"modal"}>
+                <h2 className={"modal__header"}>Edit category</h2>
+                <div className={"modal__title"}>
+                    <input className={"title__input"} ref="categoryTitleInput" type={"text"}
+                           placeholder={"Title"}
+                           defaultValue={currentCategory.title}/>
+                </div>
+                <div className={"modal__buttons"}>
+                    <button className={"modal__ok-button"} onClick={this.renameCategory}>Ok</button>
+                    <button className={"modal__cancel-button"} onClick={this.closeEditCategoryModal}>Cancel</button>
+                </div>
             </div>
-            <div>
-                <button onClick={this.renameCategory}>Ok</button>
-                <button onClick={this.closeModal}>Close</button>
+        </Modal>;
+
+        let addSubCategoryModal = <Modal
+            isOpen={this.state.modalAddSubCategoryIsOpen}
+            onRequestClose={this.closeEditCategoryModal}
+            style={this.customStyles}>
+
+            <div className={"modal"}>
+                <h2 className={"modal__header"}>Add subcategory</h2>
+                <div className={"modal__title"}>
+                    <input className={"title__input"} ref="subCategoryTitleInput" type={"text"}
+                           placeholder={"Title"}/>
+                </div>
+                <div className={"modal__buttons"}>
+                    <button className={"modal__ok-button"} onClick={this.addSubCategory}>Ok</button>
+                    <button className={"modal__cancel-button"} onClick={this.closeAddSubCategoryModal}>Cancel</button>
+                </div>
             </div>
         </Modal>;
 
@@ -127,11 +193,11 @@ class CategoryItem extends React.Component {
                     <span className={"category-item__title"}>{currentCategory.title}</span>
                 </div>
                 <div className={"category-item__buttons"}>
-                    <button className={"category-item__button category-item__button-rename"}
-                            onClick={this.openModal}>rename
+                    <button className={"category-item__button category-item__button-edit"}
+                            onClick={this.openEditCategoryModal}>edit
                     </button>
                     <button className={"category-item__button category-item__button-add-sub-category"}
-                            onClick={this.addSubCategory}>+
+                            onClick={this.openAddSubCategoryModal}>+
                     </button>
                     <button className={"category-item__button category-item__button-delete"}
                             onClick={this.deleteCategory}>x
@@ -139,7 +205,8 @@ class CategoryItem extends React.Component {
                 </div>
             </div>
 
-            {categoryModal}
+            {editCategoryModal}
+            {addSubCategoryModal}
 
             {currentCategory.isExpanded ?
                 <CategoriesList categories={subCategories}

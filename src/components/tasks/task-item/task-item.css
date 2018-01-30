@@ -17,4 +17,11 @@
 
 .task-item__rename-button {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    background: #1987d5;
+
 }

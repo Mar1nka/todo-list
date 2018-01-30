@@ -13,7 +13,7 @@ class Header extends React.Component {
         let taskFilter = <TaskFilter isTaskCompleted={this.props.isTaskCompleted}/>;
 
         if (this.props.editTask) {
-            headerTitle = <div className={"header__title"}>To-Do Item {this.props.editTask.title}</div>;
+            headerTitle = <div className={"header__title"}>To-Do Item "{this.props.editTask.title}"</div>;
             taskFilter = null;
         }
 

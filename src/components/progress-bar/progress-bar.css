@@ -10,6 +10,10 @@
 
 }
 
+.progress-bar--not-display {
+    visibility: hidden;
+}
+
 .progress-bar__value {
     background: #428bca;
     width: 0;

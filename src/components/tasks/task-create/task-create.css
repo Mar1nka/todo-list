@@ -4,3 +4,8 @@
     align-items: center;
     margin-bottom: 30px;
 }
+
+.task-create-form__button-add {
+    cursor: pointer;
+    color: #48ad36;
+}

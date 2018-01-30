@@ -8,6 +8,7 @@ module.exports = {
         filename: "bundle.js"       // название создаваемого файла
     },
     module: {
+
         rules: [   //загрузчик для js
             {
                 test: /\.jsx?$/, // определяем тип файлов
@@ -26,6 +27,7 @@ module.exports = {
                 ]
             }
         ]
+
     },
     devtool: 'source-map'
 };

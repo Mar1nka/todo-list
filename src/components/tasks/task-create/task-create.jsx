@@ -32,7 +32,7 @@ class TaskCreate extends React.Component {
     render() {
         return <form className={"task-create-form"}>
             <input ref="taskInput" placeholder="Enter task title" />
-            <button onClick={this.createTask}>Add</button>
+            <button className={"task-create-form__button-add"} onClick={this.createTask}>Add</button>
         </form>
     }
 }

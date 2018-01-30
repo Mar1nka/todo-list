@@ -7,7 +7,6 @@ export default class CategoriesList extends React.Component {
         super(props);
     }
 
-
     render() {
         let categoryListClass = "category-list";
 

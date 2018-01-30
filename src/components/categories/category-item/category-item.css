@@ -1,4 +1,5 @@
 
+
 .category-item {
     display: inline-flex;
     flex-direction: column;
@@ -63,19 +64,47 @@ button:focus {
     display: flex;
     align-items: center;
     margin: 0 2px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    color: white;
 }
 
 .category-item__button-add-sub-category {
-    cursor: pointer;
-    color: #48ad36;
+    background: #48ad36;
 }
 
 
-.category-item__button-rename {
-    cursor: pointer;
+.category-item__button-edit {
+    background: #1987d5;
 }
 
 .category-item__button-delete {
-    color: red;
+    background: #ff5a5d;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__title {
+    margin-bottom: 20px;
+}
+
+.title__input {
+    border: 1px solid gray;
+}
+
+.modal__buttons {
+    align-self: flex-end;
+}
+
+.modal__ok-button {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.modal__cancel-button {
     cursor: pointer;
 }

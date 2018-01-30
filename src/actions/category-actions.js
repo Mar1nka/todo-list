@@ -26,12 +26,6 @@ const deleteCategory = function (category) {
     }
 };
 
-const addSubCategory = function (category) {
-    return {
-        type: "ADD_SUB_CATEGORY",
-        category
-    }
-};
 
 const changeExpandCategory = function (category) {
     return {
@@ -40,4 +34,4 @@ const changeExpandCategory = function (category) {
     }
 };
 
-export {addCategory, activeCategory, renameCategory, deleteCategory, addSubCategory, changeExpandCategory};
+export {addCategory, activeCategory, renameCategory, deleteCategory, changeExpandCategory};

@@ -14,20 +14,19 @@ export class AppView extends React.Component {
 
     render() {
         const isEditTaskEnabled = !!this.props.editTask;
-        let progressBar = <ProgressBar progressValue={this.props.completeCategoriesPercentage}/>
-
-        if (isEditTaskEnabled) {
-            progressBar = null;
-        }
+        const header = <Header editTask={this.props.editTask} isTaskCompleted={this.props.isTaskCompleted}/>;
+        const progressBar = <ProgressBar progressValue={this.props.completeCategoriesPercentage} isEditTaskEnabled={isEditTaskEnabled}/>
+        const categoryView = <CategoryView allCategories={this.props.categories} activeCategoryId={this.props.activeCategoryId}/>;
+        const taskView = <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}
+                                   editTask={this.props.editTask}/>;
 
         return <div className={"app__content"}>
-            <Header editTask={this.props.editTask} isTaskCompleted={this.props.isTaskCompleted}/>
+            {header}
             {progressBar}
             <div className={"main"}>
                 <div className={"main__content"}>
-                    <CategoryView allCategories={this.props.categories} activeCategoryId={this.props.activeCategoryId}/>
-                    <TaskView tasks={this.props.tasks} activeCategoryId={this.props.activeCategoryId}
-                              editTask={this.props.editTask}/>
+                    {categoryView}
+                    {taskView}
                 </div>
             </div>
 
@@ -104,8 +103,5 @@ function filterTasks(tasks, activeCategoryId, isCompletedTaskFilterEnabled, sear
 
     return filteredTasks;
 }
-
-
-
 
 export default connect(mapStateToProps)(AppView);

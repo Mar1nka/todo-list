@@ -14,7 +14,13 @@ export default class ProgressBar extends React.Component {
             width: progressValue + '%'
         };
 
-        return <div className={"progress-bar"}>
+        let progressBarClass = 'progress-bar';
+
+        if(this.props.isEditTaskEnabled) {
+            progressBarClass += ' ' + 'progress-bar--not-display';
+        }
+
+        return <div className={progressBarClass}>
             <div className={"progress-bar__value"} style={progressValeStyle}>
             </div>
         </div>
