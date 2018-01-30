@@ -5,15 +5,34 @@
 
 .task-edit__buttons {
     align-self: flex-end;
+    margin-bottom: 15px;
+}
+
+.task-edit__button {
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    height: 24px;
 }
 
 .task-edit__save-button {
-    margin: 0 10px 15px;
-    cursor: pointer;
+    margin: 0 10px;
+    background: rgba(72, 173, 54, 1);
+}
+
+.task-edit__save-button:hover {
+    transition: background 0.3s;
+    background: rgba(72, 173, 54, 0.5);
 }
 
 .task-edit__cancel-button {
-    cursor: pointer;
+    background: rgba(227, 39, 39, 1);
+}
+
+.task-edit__cancel-button:hover {
+    transition: background 0.3s;
+    background: rgba(227, 39, 39, 0.5);
 }
 
 .task-edit__label {

@@ -12,7 +12,12 @@
 
 .search-form__clean-button {
     cursor: pointer;
-    color: #ff5a5d;
+    color: rgba(227, 39, 39, 1);
+}
+
+.search-form__clean-button:hover {
+    transition: color 0.3s;
+    color: rgb(255, 44, 44);
 }
 
 .completed-filter__checkbox {

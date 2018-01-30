@@ -71,17 +71,33 @@ button:focus {
 }
 
 .category-item__button-add-sub-category {
-    background: #48ad36;
+    background: rgba(72, 173, 54, 1);
 }
 
+.category-item__button-add-sub-category:hover {
+    transition: background 0.3s;
+    background: rgba(72, 173, 54, 0.5);
+}
 
 .category-item__button-edit {
-    background: #1987d5;
+    background: rgba(25, 135, 213, 1);
+}
+
+.category-item__button-edit:hover {
+    transition: background 0.3s;
+    background: rgba(25, 135, 213, 0.5);
 }
 
 .category-item__button-delete {
-    background: #ff5a5d;
+    background: rgba(227, 39, 39, 1);
 }
+
+.category-item__button-delete:hover {
+    transition: background 0.3s;
+    background: rgba(227, 39, 39, 0.5);
+}
+
+
 
 .modal {
     display: flex;
@@ -100,11 +116,29 @@ button:focus {
     align-self: flex-end;
 }
 
+.modal__button {
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    height: 24px;
+}
+
 .modal__ok-button {
     margin: 0 10px;
-    cursor: pointer;
+    background: rgba(72, 173, 54, 1);
+}
+
+.modal__ok-button:hover {
+    transition: background 0.3s;
+    background: rgba(72, 173, 54, 0.5);
 }
 
 .modal__cancel-button {
-    cursor: pointer;
+    background: rgba(227, 39, 39, 1);
+}
+
+.modal__cancel-button:hover {
+    transition: background 0.3s;
+    background: rgba(227, 39, 39, 0.5);
 }

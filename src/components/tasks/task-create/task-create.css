@@ -9,3 +9,8 @@
     cursor: pointer;
     color: #48ad36;
 }
+
+.task-create-form__button-add:hover {
+    transition: color 0.3s;
+    color: #5bda46;
+}

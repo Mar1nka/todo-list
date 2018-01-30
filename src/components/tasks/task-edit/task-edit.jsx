@@ -38,8 +38,8 @@ import './task-edit.css';
     render() {
         return <div className={"task-edit"}>
             <div className={"task-edit__buttons"}>
-                <button className={"task-edit__save-button"} onClick={this.saveChanges}>Save changes</button>
-                <button className={"task-edit__cancel-button"} onClick={this.cancel}>Cancel</button>
+                <button className={"task-edit__button task-edit__save-button"} onClick={this.saveChanges}>Save changes</button>
+                <button className={"task-edit__button task-edit__cancel-button"} onClick={this.cancel}>Cancel</button>
             </div>
             <input className={"task-edit__label"} ref="titleInput" defaultValue={this.props.editTask.title}/>
             <div className={"task-edit__completedTask"}>

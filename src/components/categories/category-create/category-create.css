@@ -7,3 +7,8 @@
     cursor: pointer;
     color: #48ad36;
 }
+
+.category-create__add-button:hover {
+    transition: color 0.3s;
+    color: #5bda46;
+}

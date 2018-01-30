@@ -161,8 +161,8 @@ class CategoryItem extends React.Component {
                            defaultValue={currentCategory.title}/>
                 </div>
                 <div className={"modal__buttons"}>
-                    <button className={"modal__ok-button"} onClick={this.renameCategory}>Ok</button>
-                    <button className={"modal__cancel-button"} onClick={this.closeEditCategoryModal}>Cancel</button>
+                    <button className={"modal__button modal__ok-button"} onClick={this.renameCategory}>Ok</button>
+                    <button className={"modal__button modal__cancel-button"} onClick={this.closeEditCategoryModal}>Cancel</button>
                 </div>
             </div>
         </Modal>;
@@ -179,8 +179,8 @@ class CategoryItem extends React.Component {
                            placeholder={"Title"}/>
                 </div>
                 <div className={"modal__buttons"}>
-                    <button className={"modal__ok-button"} onClick={this.addSubCategory}>Ok</button>
-                    <button className={"modal__cancel-button"} onClick={this.closeAddSubCategoryModal}>Cancel</button>
+                    <button className={"modal__button modal__ok-button"} onClick={this.addSubCategory}>Ok</button>
+                    <button className={"modal__button modal__cancel-button"} onClick={this.closeAddSubCategoryModal}>Cancel</button>
                 </div>
             </div>
         </Modal>;
